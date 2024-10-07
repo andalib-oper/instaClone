@@ -19,7 +19,7 @@ const Home = () => {
             offset: 500 * index,
             index,
           })}
-          initialNumToRender={200}
+          initialNumToRender={10}
           removeClippedSubviews={true}
         />
       </View>
