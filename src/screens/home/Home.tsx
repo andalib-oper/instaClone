@@ -7,6 +7,7 @@ import mockdata from '../../assets/mockdata/postdata.json'
 const Home = () => {
   const {fontScale} = useWindowDimensions()
   const styles = makeStyles(fontScale)
+  const ITEM_HEIGHT = 500;
   return (
     <View style={styles.container}>
       <View style={styles.flatlist}>
@@ -15,8 +16,8 @@ const Home = () => {
           renderItem={({item, index}) => <PostCard item={item} key={index} />}
           keyExtractor={(item, indx) => indx.toString()}
           getItemLayout={(data, index) => ({
-            length: 500, // Assuming ITEM_HEIGHT is a constant value or calculated elsewhere
-            offset: 500 * index,
+            length: ITEM_HEIGHT, // Assuming ITEM_HEIGHT is a constant value or calculated elsewhere
+            offset: ITEM_HEIGHT * index,
             index,
           })}
           initialNumToRender={10}
