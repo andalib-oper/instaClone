@@ -16,9 +16,12 @@ jobs:
       - name: Go inside to android folder
         run: |
           cd android
+      - name: Check gradle
+        run: | 
+          chmod +x ./gradlew
       - name: Build Android APK
-        run: 
-          gradlew assembleRelease
+        run: |
+          ./gradlew assembleRelease
       - name: Sign APK
         id: sign_app
         uses: r0adkll/sign-android-release@v1
