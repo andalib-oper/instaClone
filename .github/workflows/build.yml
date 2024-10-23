@@ -29,6 +29,14 @@ jobs:
       - name: Verify Keystore File with Keytool
         run: |
           keytool -list -v -keystore android/app/your_key_name.keystore -storepass ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
+
+      - name: Print Keystore File Content
+        run: |
+          cat android/app/your_key_name.keystore
+
+      - name: Print Keystore File Permissions
+        run: |
+          ls -l android/app/your_key_name.keystore
       - name: Build Android APK
         run: |
           cd android
