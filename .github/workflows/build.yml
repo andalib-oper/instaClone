@@ -21,7 +21,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           cache: 'gradle'
-
+      - name: Set JAVA_HOME for Gradle
+        run: echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> $GITHUB_ENV
       - name: Build Android APK
         run: |
           cd android
