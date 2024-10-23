@@ -19,9 +19,6 @@ jobs:
       - name: Install gradle
         run: |
          sudo apt-get install gradle
-      - name: Check gradle
-        run: | 
-          chmod +x ./gradlew
       - name: Build Android APK
         run: |
           ./gradlew assembleRelease
