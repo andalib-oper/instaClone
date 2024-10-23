@@ -30,7 +30,7 @@ jobs:
       - name: Print Environment Variables
         run: |
           echo "JAVA_HOME: $JAVA_HOME"
-          echo "ANDROID_SIGNING_KEY: ${{ secrets.ANDROID_SIGNING_KEY }}"
+          echo "ANDROID_SIGNING_KEY: ${{ secrets.ANDROID_SIGNING_KEY }} | base64 --decode > android/app/your_key_name.keystore"
           echo "ANDROID_SIGNING_ALIAS: ${{ secrets.ANDROID_SIGNING_ALIAS }}"
           echo "ANDROID_SIGNING_STORE_PASSWORD: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}"
           echo "ANDROID_SIGNING_KEY_PASSWORD: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}"
@@ -56,7 +56,7 @@ jobs:
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: ${{ github.workspace }}/android/app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
+          signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }} 
           alias: ${{ secrets.ANDROID_SIGNING_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
