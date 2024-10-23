@@ -18,7 +18,7 @@ jobs:
           cd android
       - name: Build Android APK
         run: 
-          ./gradlew assembleRelease
+          gradlew assembleRelease
       - name: Sign APK
         id: sign_app
         uses: r0adkll/sign-android-release@v1
