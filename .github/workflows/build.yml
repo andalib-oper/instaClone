@@ -21,8 +21,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           cache: 'gradle'
+
       - name: Set JAVA_HOME for Gradle
         run: echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> $GITHUB_ENV
+
       - name: Create Keystore File
         run: |
           echo ${{ secrets.ANDROID_SIGNING_KEY }} | base64 --decode > android/app/your_key_name.keystore
@@ -34,6 +36,7 @@ jobs:
           echo "ANDROID_SIGNING_ALIAS: ${{ secrets.ANDROID_SIGNING_ALIAS }}"
           echo "ANDROID_SIGNING_STORE_PASSWORD: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}"
           echo "ANDROID_SIGNING_KEY_PASSWORD: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}"
+
       - name: Verify Keystore File with Keytool
         run: |
           keytool -list -v -keystore android/app/your_key_name.keystore -storepass ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
@@ -45,6 +48,7 @@ jobs:
       - name: Print Keystore File Permissions
         run: |
           ls -l android/app/your_key_name.keystore
+
       - name: Build Android APK
         run: |
           cd android
@@ -66,4 +70,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          path: ${{ steps.sign_app.outputs.signedReleaseFile }}
