@@ -15,14 +15,14 @@ jobs:
       - name: Install dependencies
         run: npm install -f
 
-      - name: Install Java 17
+      - name: Install Java 23
         run: |
           sudo apt-get update
-          sudo apt-get install openjdk-17-jdk
+          sudo apt-get install openjdk-23-jdk
           
-      - name: Set up Java 17
+      - name: Set up Java 23
         run: |
-          sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-17-openjdk-amd64/bin/java 1
+          sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-23-openjdk-amd64/bin/java 1
           sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
         # Ensure Java 17 is the active version
       - name: Verify Java version
