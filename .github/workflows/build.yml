@@ -15,9 +15,18 @@ jobs:
       - name: Install dependencies
         run: npm install -f
 
-      # Change directory to 'android' and keep this context for the following steps
-      - name: Change directory to Android
-        run: cd android
+      - name: Install Java 17
+        run: |
+          sudo apt-get update
+          sudo apt-get install openjdk-17-jdk
+          
+      - name: Set up Java 17
+        run: |
+          sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-17-openjdk-amd64/bin/java 1
+          sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+        # Ensure Java 17 is the active version
+      - name: Verify Java version
+        run: java -version
 
       - name: Build Android APK
         run: |
