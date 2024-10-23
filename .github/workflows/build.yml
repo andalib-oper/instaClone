@@ -26,11 +26,6 @@ jobs:
       - name: Create Keystore File
         run: |
           echo ${{ secrets.ANDROID_SIGNING_KEY }} | base64 --decode > android/app/your_key_name.keystore
-
-      - name: Verify Keystore File with OpenSSL
-        run: |
-          openssl pkcs12 -info -in android/app/your_key_name.keystore -passin pass:${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
-
       - name: Verify Keystore File with Keytool
         run: |
           keytool -list -v -keystore android/app/your_key_name.keystore -storepass ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
