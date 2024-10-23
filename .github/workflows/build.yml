@@ -21,7 +21,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           cache: 'gradle'
-
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          android-sdk-version: '29.0.3'
       - name: Set JAVA_HOME for Gradle
         run: echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> $GITHUB_ENV
 
