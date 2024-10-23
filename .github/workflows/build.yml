@@ -16,6 +16,9 @@ jobs:
       - name: Go inside to android folder
         run: |
           cd android
+      - name: Install gradle
+        run: |
+         sudo apt-get install gradle
       - name: Check gradle
         run: | 
           chmod +x ./gradlew
