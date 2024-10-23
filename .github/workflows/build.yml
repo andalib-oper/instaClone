@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      
+
 jobs:
   build-apk:
     runs-on: ubuntu-latest
@@ -27,15 +27,13 @@ jobs:
 
       - name: Create Keystore File
         run: |
+          rm -f android/app/your_key_name.keystore
           echo ${{ secrets.ANDROID_SIGNING_KEY }} | base64 --decode > android/app/your_key_name.keystore
 
-      - name: Print Environment Variables
+      - name: Verify Keystore Size
         run: |
-          echo "JAVA_HOME: $JAVA_HOME"
-          echo "ANDROID_SIGNING_KEY: ${{ secrets.ANDROID_SIGNING_KEY }}"
-          echo "ANDROID_SIGNING_ALIAS: ${{ secrets.ANDROID_SIGNING_ALIAS }}"
-          echo "ANDROID_SIGNING_STORE_PASSWORD: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}"
-          echo "ANDROID_SIGNING_KEY_PASSWORD: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}"
+          echo "Keystore size:"
+          du -h android/app/your_key_name.keystore
 
       - name: Verify Keystore File with Keytool
         run: |
