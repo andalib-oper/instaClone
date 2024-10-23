@@ -13,11 +13,12 @@ jobs:
 
       - name: Install dependencies
         run: npm install -f
-
-      - name: Build Android APK
+      - name: Go inside to android folder
         run: |
           cd android
-          .\gradlew assembleRelease
+      - name: Build Android APK
+        run: 
+          ./gradlew assembleRelease
       - name: Sign APK
         id: sign_app
         uses: r0adkll/sign-android-release@v1
