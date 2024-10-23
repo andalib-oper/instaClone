@@ -29,7 +29,7 @@ jobs:
           
       - name: Verify Keystore File
         run: |
-          keytool -list -v -keystore android/app/your_key_name.keystore -alias ${{ secrets.ANDROID_SIGNING_ALIAS }} -storepass ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }} -keypass ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
+           keytool -list -v -keystore android/app/your_key_name.keystore -alias ${{ secrets.ANDROID_SIGNING_ALIAS }} -storepass ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }} -keypass ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
       - name: Build Android APK
         run: |
           cd android
