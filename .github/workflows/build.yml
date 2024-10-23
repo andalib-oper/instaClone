@@ -23,17 +23,20 @@ jobs:
           cache: 'gradle'
       - name: Set JAVA_HOME for Gradle
         run: echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> $GITHUB_ENV
+      - name: Create Keystore File
+        run: |
+          echo ${{ secrets.ANDROID_SIGNING_KEY }} | base64 --decode > android/app/your_key_name.keystore
       - name: Build Android APK
         run: |
           cd android
           chmod +x ./gradlew
           ./gradlew assembleRelease
-
+      
       - name: Sign APK
         id: sign_app
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: ${{ github.workspace}}/app-name/android/app/build/outputs/apk/release
+          releaseDirectory: ${{ github.workspace }}/android/app/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
           alias: ${{ secrets.ANDROID_SIGNING_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
