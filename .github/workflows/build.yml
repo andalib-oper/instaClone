@@ -69,7 +69,10 @@ jobs:
           alias: ${{ secrets.ANDROID_SIGNING_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
-
+      - name: Verify APK Integrity
+        run: |
+          cd android/app/build/outputs/apk/release
+          jarsigner -verify -verbose -certs your_app.apk
       - name: Upload APK
         id: uploadArtifact
         uses: actions/upload-artifact@v4
