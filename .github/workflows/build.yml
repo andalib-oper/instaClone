@@ -72,7 +72,7 @@ jobs:
       - name: Verify APK Integrity
         run: |
           cd android/app/build/outputs/apk/release
-          jarsigner -verify -verbose -certs your_app.apk
+          jarsigner -verify -verbose -certs app-release.apk
       - name: Upload APK
         id: uploadArtifact
         uses: actions/upload-artifact@v4
