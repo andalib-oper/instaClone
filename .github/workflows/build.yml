@@ -25,6 +25,10 @@ jobs:
         uses: android-actions/setup-android@v2
         with:
           android-sdk-version: '29.0.3'
+      - name: Install Android Build Tools
+        run: |
+          yes | sdkmanager --licenses
+          sdkmanager "build-tools;29.0.3"
       - name: Set JAVA_HOME for Gradle
         run: echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> $GITHUB_ENV
 
