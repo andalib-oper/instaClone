@@ -9,7 +9,6 @@ import {QueryClientProvider, QueryClient} from '@tanstack/react-query';
 const App = () => {
    const isDarkMode = useColorScheme() === 'dark';
    const {width, height} = useWindowDimensions();
-   const [notificationToken, setNotificationToken] = useState(null);
     const backgroundStyle = {
       backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
       width: width,
